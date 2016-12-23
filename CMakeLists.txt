@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.0)
+project(upgrade CXX)
+include(CMakeToolsHelpers OPTIONAL)
+add_executable(upgrade aes256.cpp config_file.cpp upgrade.cpp)
+target_link_libraries(upgrade ${CMAKE_DL_LIBS})
+
+if(MSVC)
+    target_compile_options(upgrade PRIVATE /W4 /EHsc)
+    set_property(TARGET upgrade APPEND PROPERTY LINK_FLAGS /DEBUG)
+endif()
