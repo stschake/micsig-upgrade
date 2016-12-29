@@ -95,6 +95,19 @@ void config_file::set_bandwidth(int8_t value)
     data.get()[bandwidth_offset] = value;
 }
 
+memory_depth config_file::get_memory_depth() const
+{
+    return (memory_depth) ((get_flags() >> 8) & 0x0F);
+}
+
+void config_file::set_memory_depth(memory_depth depth)
+{
+    uint32_t flags = get_flags();
+    flags &= ~(0x0F << 8);
+    flags |= ((uint32_t) depth) << 8;
+    set_flags(flags);
+}
+
 constexpr int flags_offset = 0x0114;
 uint32_t config_file::get_flags() const
 {

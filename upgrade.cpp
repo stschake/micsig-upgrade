@@ -15,6 +15,11 @@ int main()
             std::cout << "Upgraded bandwidth to 100MHz" << std::endl;
         }
 
+        if (file.get_memory_depth() != memory_depth::DEPTH_28M) {
+            file.set_memory_depth(memory_depth::DEPTH_28M);
+            std::cout << "Upgraded memory depth to 28M" << std::endl;
+        }
+
         const std::vector<std::pair<config_flag,const char*>> options = {
             { config_flag::HAS_HDMI, "HDMI" },
             { config_flag::HAS_500_uV, "500uV" },
